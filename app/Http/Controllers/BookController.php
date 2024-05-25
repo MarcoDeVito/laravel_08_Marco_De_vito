@@ -3,13 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\BookRequest;
-use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
+    // public static function middleware(): array
+    // {
+    //     return ['auth'];
+    // }
+
     public function create(){
-        return view('create');
+        return view('book.create');
     }
     public function store(BookRequest $request){
         $path_image='';
@@ -24,16 +29,16 @@ class BookController extends Controller
             'years'=>$request->years,
             'image'=> $path_image
         ]);
-        return redirect()->route('create')->with('success', 'Grazie, libro inserito');
+        return redirect()->route('book.create')->with('success', 'Grazie, libro inserito');
     }
     
     public function index(){
-        $books = Book::all();
-        return view('book',compact('books'));
+        $books = Book::paginate(6);
+        return view('book.book',compact('books'));
     }
 
     public function show(Book $book){
        
-        return view('show',compact('book'));
+        return view('book.show',compact('book'));
     }
 }

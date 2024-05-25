@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     @vite(['resources/css/app.css','resources/js/app.js'])
-    <title>{{$title}}</title>
+    <title>{{$title ?? "Libreria"}}</title>
   </head>
   <body>
     <x-navbar/>

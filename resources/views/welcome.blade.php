@@ -2,5 +2,12 @@
     <x-slot:title>
         Libreria
     </x-slot>
-    <h1>hey</h1>
+    
+    <h1>
+        @auth
+        Benvenuto {{Auth::user()->name}}
+        @else
+        Benvenuto
+        @endauth
+    </h1>
 </x-main>
